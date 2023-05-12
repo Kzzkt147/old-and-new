@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     [Header("Connected Components")]
     [SerializeField] private PlayerMove playerMove;
-    
+
     //private variables
     private PlayerInputActions _playerInputActions;
 
@@ -24,6 +24,8 @@ public class PlayerInput : MonoBehaviour
         _playerInputActions.Player.Jump.performed += Jump;
         _playerInputActions.Player.Jump.started += (ctx) => playerMove.IsJumpPressed = true;
         _playerInputActions.Player.Jump.canceled += (ctx) => playerMove.IsJumpPressed = false;
+
+        _playerInputActions.Player.TimeSwitch.performed += (ctx) => TimeSwitchController.ToggleTimePeriod();
     }
 
     private void OnDisable()
