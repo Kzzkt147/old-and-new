@@ -14,10 +14,19 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float jumpStrength;
     [SerializeField] private float fallMultiplier;
     [SerializeField] private float cancelJumpMultiplier;
+    [SerializeField] private float coyoteTime = 0.1f;
+    [SerializeField] private float jumpBuffer = 0.15f;
+    [SerializeField] private float maxFallingSpeed = 10f;
+    // private jump variables
+    private float _coyoteTimer;
+    private float _jumpBufferTimer;
+    private bool _bufferActive = false;
+    
+    [Header("Grounded Settings")]
     [SerializeField] private Vector2 groundCheckRaycastOffset;
     [SerializeField] private float groundCheckRaycastDistance;
     [SerializeField] private LayerMask groundLayers;
-    // private jump variables
+    // private grounded variables
     private bool _isGrounded = true;
 
     [Header("Connected Components")] 
@@ -33,7 +42,21 @@ public class PlayerMove : MonoBehaviour
 
     public void Jump()
     {
+        if (!_isGrounded) StartJumpBuffer();
+        if (!_isGrounded && Time.time > _coyoteTimer) return;
+        
         rigidbody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+    }
+
+    private void CoyoteTimerStart()
+    {
+        _coyoteTimer = Time.time + coyoteTime;
+    }
+
+    private void StartJumpBuffer()
+    {
+        _jumpBufferTimer = Time.time + jumpBuffer;
+        _bufferActive = true;
     }
 
     private void HandleJumpMultipliers()
@@ -62,7 +85,7 @@ public class PlayerMove : MonoBehaviour
         {
             if(_isGrounded)
             {
-                //CoyoteTimerStart();
+                CoyoteTimerStart();
             }
             _isGrounded = false;
         }
@@ -70,7 +93,7 @@ public class PlayerMove : MonoBehaviour
         if(animator) animator.SetBool(IsGrounded, _isGrounded);
     }
 
-    private void Update()
+    private void HorizontalMovement()
     {
         var isMoving = MoveInput != 0;
         
@@ -95,9 +118,23 @@ public class PlayerMove : MonoBehaviour
             _velocity = Vector2.MoveTowards(_velocity, Vector2.zero, friction * Time.deltaTime);
         }
         
-        UpdateGroundedStatus();
-        
         animator.SetBool(IsMoving, isMoving);
+    }
+
+    private void Update()
+    {
+        HorizontalMovement();
+        
+        UpdateGroundedStatus();
+
+        if (_bufferActive && _isGrounded && Time.time < _jumpBufferTimer)
+        {
+            _bufferActive = false;
+            Jump();
+        }
+
+        // Clamp fall velocity
+        rigidbody.velocity = new Vector2(rigidbody.velocity.x, Mathf.Clamp(rigidbody.velocity.y, -maxFallingSpeed, Mathf.Infinity));
     }
 
     private void FixedUpdate()
