@@ -13,4 +13,16 @@ public static class TimeSwitchController
         TimePeriod = TimePeriod == TimePeriod.Past ? TimePeriod.Future : TimePeriod.Past;
         OnPeriodSwitch?.Invoke();
     }
+    
+    public static void ChangeTimePeriodToFuture()
+    {
+        TimePeriod = TimePeriod.Future;
+        OnPeriodSwitch?.Invoke();
+    }
+
+    public static void ChangeTimePeriodToPast()
+    {
+        TimePeriod = TimePeriod.Past;
+        OnPeriodSwitch?.Invoke();
+    }
 }
