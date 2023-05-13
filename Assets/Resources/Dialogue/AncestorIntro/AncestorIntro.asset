@@ -45,7 +45,7 @@ MonoBehaviour:
       _dynamic: 0
   entry: 0
   isPlayerSpeaking: 1
-  dialogue: What a beautful day for a stroll!
+  dialogue: What a beautiful day for a stroll!
   lettersPerSecond: 25
   exit: 0
 --- !u!114 &11400000
@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: -5778662134652733658}
   - {fileID: 1939956392143075055}
   - {fileID: 6141671239763653992}
-  currentNode: {fileID: 0}
+  currentNode: {fileID: 1939956392143075055}
 --- !u!114 &1939956392143075055
 MonoBehaviour:
   m_ObjectHideFlags: 0

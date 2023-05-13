@@ -272,6 +272,7 @@ MonoBehaviour:
   entry: 0
   isPlayerSpeaking: 0
   dialogue: I'm from the future, I don't have time to answer all of your questions.
+    I'm on a time limit here.
   lettersPerSecond: 25
   exit: 0
 --- !u!114 &11400000
@@ -297,7 +298,7 @@ MonoBehaviour:
   - {fileID: 5603901361620626862}
   - {fileID: 8464984062979797235}
   - {fileID: -6712576158441055851}
-  currentNode: {fileID: 0}
+  currentNode: {fileID: 5603901361620626862}
 --- !u!114 &1652286447302816111
 MonoBehaviour:
   m_ObjectHideFlags: 0
