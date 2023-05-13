@@ -15,6 +15,11 @@ public class PlayerDeath : MonoBehaviour
         _deathCoroutine = StartCoroutine(StartDeathTimer());
     }
 
+    public void SetCheckpoint(Transform checkpointSetter)
+    {
+        respawnPosition = checkpointSetter.position;
+    }
+
     private IEnumerator StartDeathTimer()
     {
         GameManager.Instance.PauseGame();
