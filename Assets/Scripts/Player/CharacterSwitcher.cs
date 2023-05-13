@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterSwitcher : MonoBehaviour
@@ -19,5 +20,10 @@ public class CharacterSwitcher : MonoBehaviour
     private void OnEnable()
     {
         TimeSwitchController.OnPeriodSwitch += SwitchCharacter;
+    }
+
+    private void OnDisable()
+    {
+        TimeSwitchController.OnPeriodSwitch -= SwitchCharacter;
     }
 }

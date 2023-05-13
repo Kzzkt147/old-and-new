@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private Fader fader;
+    [SerializeField] private bool startFade = true;
 
     private Coroutine _fadeCoroutine;
     

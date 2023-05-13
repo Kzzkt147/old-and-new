@@ -20,6 +20,7 @@ public class PlayerInput : MonoBehaviour
     private void PressTab(InputAction.CallbackContext ctx)
     {
         if (!_canTakeInput) return;
+        if (!playerTimeSwitch) return;
         playerTimeSwitch.SwitchTime();
     }
 

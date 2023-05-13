@@ -24,6 +24,8 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private GameObject choiceScreenObject;
     [SerializeField] private Button[] choiceButtons;
 
+    [SerializeField] private AudioSource audioSource;
+
     public void EnableDialogue(bool enable)
     {
         dialogueUIObject.SetActive(enable);
@@ -73,6 +75,7 @@ public class DialogueUI : MonoBehaviour
         foreach (var letter in dialogue)
         {
             dialogueText.text += letter;
+            audioSource.Play();
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
 

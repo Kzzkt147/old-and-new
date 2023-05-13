@@ -25,6 +25,15 @@ public class DialogueManager : MonoBehaviour
 
     private int _selectedButtonIndex = 0;
 
+    [SerializeField] private List<ConversationEvent> conversationEvents = new();
+
+    [Serializable]
+    public class ConversationEvent
+    {
+        public string conversationName;
+        public UnityEvent onConversationEnd;
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -51,6 +60,14 @@ public class DialogueManager : MonoBehaviour
         onDialogueEnd?.Invoke();
         state = DialogueState.NoState;
         _dialogueUI.EnableDialogue(false);
+        
+        foreach (var conversationEndEvent in conversationEvents)
+        {
+            if (conversationEndEvent.conversationName == _activeConversation.name)
+            {
+                conversationEndEvent.onConversationEnd?.Invoke();
+            }
+        }
         _activeConversation = null;
     }
 

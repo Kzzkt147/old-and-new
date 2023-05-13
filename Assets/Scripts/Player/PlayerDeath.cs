@@ -6,12 +6,15 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private Vector2 respawnPosition;
     [SerializeField] private float deathTime = 2f;
 
+    [SerializeField] private ParticleSystem deathParticles;
+
     private SpriteRenderer _spriteRenderer;
     private Coroutine _deathCoroutine;
 
     public void Die()
     {
         if(_deathCoroutine != null) StopCoroutine(_deathCoroutine);
+        deathParticles.Play();
         _deathCoroutine = StartCoroutine(StartDeathTimer());
     }
 
