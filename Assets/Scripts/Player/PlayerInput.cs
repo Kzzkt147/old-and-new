@@ -5,8 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     [Header("Connected Components")]
     [SerializeField] private PlayerMove playerMove;
-
-    [SerializeField] private bool canSwitchTime = false;
+    [SerializeField] private PlayerTimeSwitch playerTimeSwitch;
 
     //private variables
     private PlayerInputActions _playerInputActions;
@@ -18,11 +17,10 @@ public class PlayerInput : MonoBehaviour
         playerMove.Jump();
     }
 
-    private void ToggleTimeSwitch(InputAction.CallbackContext ctx)
+    private void PressTab(InputAction.CallbackContext ctx)
     {
         if (!_canTakeInput) return;
-        if (!canSwitchTime) return;
-        TimeSwitchController.ToggleTimePeriod();
+        playerTimeSwitch.SwitchTime();
     }
 
     private void DisablePlayer()
@@ -51,8 +49,8 @@ public class PlayerInput : MonoBehaviour
         _playerInputActions.Player.Jump.started += (ctx) => playerMove.IsJumpPressed = true;
         _playerInputActions.Player.Jump.canceled += (ctx) => playerMove.IsJumpPressed = false;
 
-        _playerInputActions.Player.TimeSwitch.performed += ToggleTimeSwitch;
-        
+        _playerInputActions.Player.TimeSwitch.performed += PressTab;
+
 
         GameEvents.OnGamePause += DisablePlayer;
         GameEvents.OnGameCutscene += DisablePlayer;
@@ -65,6 +63,8 @@ public class PlayerInput : MonoBehaviour
         
         _playerInputActions.Player.Jump.performed -= Jump;
         
+        _playerInputActions.Player.TimeSwitch.performed -= PressTab;
+
         GameEvents.OnGamePause -= DisablePlayer;
         GameEvents.OnGameCutscene -= DisablePlayer;
         GameEvents.OnGamePlay -= EnablePlayer;
