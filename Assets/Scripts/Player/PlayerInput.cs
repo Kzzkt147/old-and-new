@@ -24,6 +24,11 @@ public class PlayerInput : MonoBehaviour
         playerTimeSwitch.SwitchTime();
     }
 
+    private void Quit(InputAction.CallbackContext ctx)
+    {
+        Application.Quit();
+    }
+
     private void DisablePlayer()
     {
         _canTakeInput = false;
@@ -51,6 +56,8 @@ public class PlayerInput : MonoBehaviour
         _playerInputActions.Player.Jump.canceled += (ctx) => playerMove.IsJumpPressed = false;
 
         _playerInputActions.Player.TimeSwitch.performed += PressTab;
+        
+        _playerInputActions.Player.Quit.performed += Quit;
 
 
         GameEvents.OnGamePause += DisablePlayer;
@@ -65,6 +72,8 @@ public class PlayerInput : MonoBehaviour
         _playerInputActions.Player.Jump.performed -= Jump;
         
         _playerInputActions.Player.TimeSwitch.performed -= PressTab;
+
+        _playerInputActions.Player.Quit.performed -= Quit;
 
         GameEvents.OnGamePause -= DisablePlayer;
         GameEvents.OnGameCutscene -= DisablePlayer;
