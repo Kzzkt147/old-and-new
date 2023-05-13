@@ -40009,6 +40009,8 @@ PlayableDirector:
     value: {fileID: 1988430770}
   - key: {fileID: 4549622709077912568, guid: b8051fddd15ac1b4bbc5863f68a43258, type: 2}
     value: {fileID: 1173651165}
+  - key: {fileID: 8808026848812702087, guid: b8051fddd15ac1b4bbc5863f68a43258, type: 2}
+    value: {fileID: 1273321168}
   m_ExposedReferences:
     m_References:
     - eabd76fe8ce16e24e8cba16e27b8091b: {fileID: 1988430768}
@@ -40118,6 +40120,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a27e0e7fb1379f44a044c6bfa6b7758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1273321168 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3077620903935110310, guid: 786ea693e8d58fa4cabd845338b52d54, type: 3}
+  m_PrefabInstance: {fileID: 3077620903510559741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1498616388
 GameObject:
   m_ObjectHideFlags: 0
