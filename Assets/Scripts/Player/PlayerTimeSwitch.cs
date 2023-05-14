@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerTimeSwitch : MonoBehaviour
 {
     [SerializeField] private float cooldown = 2f;
-    [SerializeField] private AudioSource potionAudio;
+    //[SerializeField] private AudioSource potionAudio;
     private bool _canSwitchTime = true;
     private Coroutine _cooldownCoroutine;
 
@@ -19,7 +19,21 @@ public class PlayerTimeSwitch : MonoBehaviour
         _cooldownCoroutine = StartCoroutine(SwitchCooldown());
         
         TimeSwitchController.ToggleTimePeriod();
-        potionAudio.Play();
+        //potionAudio.Play();
+        OnTimeSwitch?.Invoke(cooldown);
+    }
+
+    public void ForceSwitchTimeFuture()
+    {
+        TimeSwitchController.ChangeTimePeriodToFuture();
+        //potionAudio.Play();
+        OnTimeSwitch?.Invoke(cooldown);
+    }
+    
+    public void ForceSwitchTimePast()
+    {
+        TimeSwitchController.ChangeTimePeriodToPast();
+        //potionAudio.Play();
         OnTimeSwitch?.Invoke(cooldown);
     }
 

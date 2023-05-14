@@ -14,7 +14,7 @@ public class PlayerDeath : MonoBehaviour
     public void Die()
     {
         if(_deathCoroutine != null) StopCoroutine(_deathCoroutine);
-        deathParticles.Play();
+        //deathParticles.Play();
         _deathCoroutine = StartCoroutine(StartDeathTimer());
     }
 

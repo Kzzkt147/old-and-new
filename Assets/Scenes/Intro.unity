@@ -238,8 +238,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialouge System
       objectReference: {fileID: 0}
+    - target: {fileID: 2797181845984237992, guid: fe3f667f8c65f8e49ac52fc151d7e1c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2797181846194031753, guid: fe3f667f8c65f8e49ac52fc151d7e1c2, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797181846330218620, guid: fe3f667f8c65f8e49ac52fc151d7e1c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797181846682334123, guid: fe3f667f8c65f8e49ac52fc151d7e1c2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797181847126424541, guid: fe3f667f8c65f8e49ac52fc151d7e1c2, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
